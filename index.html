@@ -1,1 +1,189 @@
-Hello World
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!--Meta tags always go inside the <head> elemt-->
+    <!--They are used to specify character set, page description, keywords, author of the document, and viewport settings-->
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!--Changes the view of the viewport depending on the window-->
+    <meta name="viewport" content="width=device-width, intial-scale = 1.0" />
+
+    <!--CSS Styles-->
+    <!--rel attribute defines the relationship between a linked source and current document-->
+    <!--rel works on <link>, <a>, <area>, and <form>-->
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- Icons-->
+
+    <!--Animate CSS CDN-->
+    <link rel="stylesheet" href="https//cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <title>Nico Robson</title>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav>
+        <!--The nav element represnts a section of a page whose purpose is to provide navigation links, either within the current documentaiton or to other documents-->
+        <h1>Nico Robson | Computer Science Co-op Student</h1>
+        <!--ul is unordered list-->
+        <ul class="navigation">
+            <!--The inline a (anchor) element denotes a hyper link from one web address to another-->
+            <!--The href attribute indicates the destination of the hyperlink. Without the href attribute, the a element won't work-->
+            <li><a href="#about" class="bio-text">About</a></li>
+            <li><a href="#projects" class="projects">Projects</a></li>
+            <li><a href="#skills" class="skills">Skills</a></li>
+            <li><a href="#contact" class="nav-link">Contact Me</a></li>
+        </ul>
+        <button class="burger-menu" id="burger-menu">
+            <ion-icon class="bars" name="menu-outline"></ion-icon>
+        </button>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" , id="about">
+        <img src="images/mysetup.jpg" alt="nico-robson" loading="lazy" class="hero-img" />
+        <div class="bio animate__animated animate__shakeX">
+            <h2 class="bio-text">About Me</h2>
+            <p class="bio-text">
+                Hi there, thanks for visiting my page! My name is Nico Robson and I am a third year Computer Science Co-op student at 
+                Toronto Metropolitan University. I have a passion for computer science, and I'm particularly interested in areas
+                such as software and web development, mobile applications, cyber security, and database management systems.
+            </p>
+        </div>
+    </section>
+
+    <!-- More about -->
+    <section class="more-about">
+        <h2>More About Me</h2>
+        <p>
+            I'm currently in the market for co-op placements/internships for the summer of 2023, specifically any jobs related to Computer Science!
+            I've completed one out of my four required co-op terms so far. 
+            My first placement consisted of a 4-month work term at TD Bank as a Cyber Security Intern.
+        </p>
+        <p>
+            In my spare time, I enjoy playing and watching sports such as hockey, soccer, and golf. I'm also an avid gamer, average gym-goer, and a proficient
+            video editor/content creator (visual effects specialist).
+        </p>
+        <p>
+            When I'm not doing any of these things, I'm usually doing schoolwork or working on side projects for my GitHub portfolio.
+            I'm currently working on a Music Player mobile app, check out some of my projects below!
+        </p>
+    </section>
+
+    <!-- Projects Section-->
+    <section class="projects" , id="projects">
+        <h2 class="projects-title">
+            My Recent Projects
+        </h2>
+        <div class="projects-container">
+            <div class="project-container project-card">
+                <img src="images/Music-icon.png" alt="mp3-player" loading="lazy" class="project-pic" />
+                <h3 class="project-title">Music Player Mobile Application</h3>
+                <p class="project-details">
+                    A music player app for Android, being created in Android Studios using Java.
+                </p>
+                <a href="https://github.com/nicorobson/Mobile-Application---Android-MP3-Player" target="_blank" class="project-link">Check it Out</a>
+            </div>
+            <div class="project-container project-card">
+                <img src="images/soccer2.png" alt="soccer-database" loading="lazy" class="project-pic" />
+                <h3 class="project-title">Pro Soccer Database - GUI</h3>
+                <p class="project-details">
+                    A simple GUI created with Python and Tkinter. This is connected to an Oracle database, and interacts with data that is managed 
+                    by SQL Developer. This database holds information such as soccer player stats, player information, and team stats.
+                </p>
+                <a href="https://github.com/nicorobson/Pro-Soccer-Database-GUI" target="_blank" class="project-link">Check it Out</a>
+            </div>
+            <div class="project-container project-card">
+                <img src="images/school.jpg" alt="interactive-grade-calculator" loading="lazy" class="project-pic" />
+                <h3 class="project-title">School Grade Calculator</h3>
+                <p class="project-details">
+                    An interactive Python program which takes user input, and computes the user's final grade in a given course.
+                    This is particularly useful for me during exams, so I can see what grade I need on my exam to achieve my desired mark in the course.
+                </p>
+                <a href="https://github.com/nicorobson/School-Grade-Calculator" target="_blank" class="project-link">Check it Out</a>
+            </div>
+            <div class="project-container project-card">
+                <img src="images/gui.png" alt="interactive-grade-calculator-gui" loading="lazy" class="project-pic" />
+                <h3 class="project-title">School Grade Calculator - GUI</h3>
+                <p class="project-details">
+                    An extension of my School Grade Calculator project - developiong a working GUI to perform the grade calculations.
+                </p>
+                <a href="https://github.com/nicorobson/School-Grade-Calculator-GUI" target="_blank" class="project-link">Check it Out</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills section -->
+    <section class="skills" , id="skills">
+        <h2 class="skill-header"> My Top Skills</h2>
+        <div class="skills-wrapper">
+            <div class="first-set animate__animated animate__pulse">
+                <img src="images/icons8-java.svg" alt="" loading="lazy" class="icon icon-card" />
+                <img src="images/icons8-python.svg" alt="" loading="lazy" class="icon icon-card" />
+                <img src="images/html.svg" alt="" loading="lazy" class="icon icon-card" />
+                <img src="images/sql.svg" alt="" loading="lazy" class="icon icon-card" />
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section-->
+    <section class="contact" id="contact">
+        <h2>Contact Me</h2>
+        <div class="contact-form-container">
+            <div class="contact-form">
+                <form action="mailto:nico.robson@torontomu.ca" method="POST">
+                    <div class="form-control">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="sender-name" placeholder="Enter Your Name"
+                            class="input-field" required />
+                    </div>
+                    <div class="form-control">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="sender-email" placeholder="Enter Your Email"
+                            class="input-field" required />
+                    </div>
+                    <div class="form-control">
+                        <label for="message">Message</label>
+                        <textarea id="message" cols="60" rows="10" placeholder="Enter Your Message" name="message"
+                            class="input-field" required></textarea>
+                    </div>
+                    <input type="submit" value="Submit" id="submit-btn" class="submit-btn" />
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social accounts -->
+    <div class="socials">
+        <a href="https://www.linkedin.com/in/nicorobson/" target="_blank"><img
+                src="images/icons8-linkedin-circled.gif" alt="LinkedIn" loading="lazy" class="socicon" /></a>
+        <a href="https://github.com/nicorobson" target="_blank"><img src="images/icons8-github.gif"
+                alt="GitHub" loading="lazy" class="socicon" /></a>
+    </div>
+
+
+    </div>
+    <!-- Footer section -->
+    <footer>
+        <p class="copy">&copy; Copyright 2023</p>
+        <p class="copy">
+            Built by
+            <a href="https://www.linkedin.com/in/nicorobson/" target="_blank">Nico Robson</a>
+        </p>
+    </footer>
+
+    <!-- Website Scripts -->
+    <script src="webscript.js"></script>
+
+    <!-- Ion icons scripts -->
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
+  </body>
+</html>
