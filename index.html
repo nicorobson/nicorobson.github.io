@@ -1,190 +1,513 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <!--Meta tags always go inside the <head> elemt-->
-    <!--They are used to specify character set, page description, keywords, author of the document, and viewport settings-->
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <!--Changes the view of the viewport depending on the window-->
-    <meta name="viewport" content="width=device-width, intial-scale = 1.0" />
-
-    <!--CSS Styles-->
-    <!--rel attribute defines the relationship between a linked source and current document-->
-    <!--rel works on <link>, <a>, <area>, and <form>-->
-    <link rel="stylesheet" href="style.css" />
-
-    <!-- Icons-->
-
-    <!--Animate CSS CDN-->
-    <link rel="stylesheet" href="https//cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nico Robson</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #1e1e1e;
+            color: #f1f1f1;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Header Section */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background-color: #2a2a2a;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .headline {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        nav {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            font-size: 18px;
+            padding: 5px 0;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #62dafb;
+        }
+
+        nav a:hover::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            width: 100%;
+            height: 2px;
+            background-color: #62dafb;
+            transform: scaleX(1);
+        }
+
+        nav a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            width: 100%;
+            height: 2px;
+            background-color: #62dafb;
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s ease;
+        }
+
+        /* Main Section */
+        .container {
+            margin: 100px auto 50px;
+            max-width: 1200px;
+            padding: 20px;
+        }
+
+        .about {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .about-text {
+            max-width: 600px;
+        }
+
+        .about-text h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .about-text p {
+            font-size: 18px;
+            line-height: 1.8;
+        }
+
+        .about-photo {
+            display: flex;
+            gap: 50px;
+        }
+
+        .about-photo img {
+            border-radius: 12px;
+            max-height: 200px;
+            width: auto;
+            height: 100%;
+        }
+
+        /* Experience Section */
+        .experience {
+            margin-top: 50px;
+        }
+
+        .experience h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .job {
+            background-color: #444444;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            padding: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .job:hover {
+            transform: scale(1.02);
+        }
+
+        .job-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .job-header img {
+            background-color: #ffffff;
+            width: 150px;
+            height: auto;
+            border-radius: 0;
+            padding: 2px;
+        }
+
+        .job-header h2 {
+            font-size: 24px;
+        }
+
+        .job-header span {
+            font-size: 16px;
+            color: #bdbdbd;
+        }
+
+        .job-duties {
+            margin-top: 10px;
+            display: none;
+            list-style: none;
+        }
+
+        .job-duties.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        /* Skills Section */
+        .skills-section {
+        margin-top: 80px;
+        }
+
+        .skills-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+        padding: 20px;
+        }
+
+        .skill {
+        text-align: center;
+        }
+
+        .skill img {
+        width: 80px;
+        height: 80px;
+        margin-top: 10px;
+        }
+
+        .skills-section h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .skills-section h3 {
+            padding: 20px;
+            font-size: 24px;
+        }
+
+        /* Projects Section */
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 20px;
+        }
+
+        .projects-section h2 {
+            font-size: 36px;
+            margin-bottom: 10px;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .project {
+            background: #2e2e2e;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            width: 270px;
+            margin-top: 40px;
+        }
+        .project img {
+            width: auto;
+            height: 110px;
+            border-radius: 10px;
+            background-color: white;
+        }
+        .project-title {
+            font-size: 1.5rem;
+            margin: 10px 0;
+        }
+        .project-description {
+            margin: 10px 0;
+            font-size: 1rem;
+        }
+        .github-link {
+            display: inline-block;
+            margin-top: 10px;
+            text-decoration: none;
+            color: #e0e0e0;
+            background: #444;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+        .github-link:hover {
+            background: #555;
+            color: white;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .toggle-btn {
+            cursor: pointer;
+            color: #62dafb;
+            font-size: 16px;
+        }
+
+        .toggle-btn:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+        text-align: center;
+        padding: 10px;
+        background-color: #333;
+        color: #f5f5f5;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <script>
+        function toggleDuties(id) {
+            const duties = document.getElementById(id);
+            duties.classList.toggle('active');
+        }
+    </script>
 </head>
-
 <body>
-    <!-- Navbar -->
-    <nav>
-        <!--The nav element represnts a section of a page whose purpose is to provide navigation links, either within the current documentaiton or to other documents-->
-        <h1>Nico Robson | Computer Science Co-op Student</h1>
-        <!--ul is unordered list-->
-        <ul class="navigation">
-            <!--The inline a (anchor) element denotes a hyper link from one web address to another-->
-            <!--The href attribute indicates the destination of the hyperlink. Without the href attribute, the a element won't work-->
-            <li><a href="#about" class="bio-text">About</a></li>
-            <li><a href="#projects" class="projects">Projects</a></li>
-            <li><a href="#skills" class="skills">Skills</a></li>
-            <li><a href="#contact" class="nav-link">Contact Me</a></li>
-        </ul>
-        <button class="burger-menu" id="burger-menu">
-            <ion-icon class="bars" name="menu-outline"></ion-icon>
-        </button>
-    </nav>
+    <header>
+        <div class="headline">Nico Robson | Aspiring Developer</div>
+        <nav>
+            <a href="#about">About Me</a>
+            <a href="#experience">Experience</a>
+            <a href="#skills">Skills</a>   
+            <a href="#projects">Projects</a>
+        </nav>
+    </header>
 
-    <!-- Hero Section -->
-    <section class="hero" , id="about">
-        <img src="images/mysetup.jpg" alt="nico-robson" loading="lazy" class="hero-img" />
-        <div class="bio animate__animated animate__shakeX">
-            <h2 class="bio-text">About Me</h2>
-            <p class="bio-text">
-                Hi there, thanks for visiting my page! My name is Nico Robson and I am a fourth year Computer Science Co-op student at 
-                Toronto Metropolitan University. I have a passion for coding, and I'm particularly interested in areas
-                such as software and web development, mobile applications, cybersecurity, and automation.
-            </p>
-        </div>
-    </section>
-
-    <!-- More about -->
-    <section class="more-about">
-        <h2>More About Me</h2>
-        <p>
-            I'm currently in the market for co-op placements/internships for the Summer of 2024, specifically any jobs related to Computer Science!
-            I've completed 3 out of my 4 required co-op terms so far. 
-            I completed 2 terms at TD Bank, first as a Cyber Security Intern, and also as a Quality Engineer. I am now working at OPSEU Pension Trust as a Developer in robotic process automation.
-        </p>
-        <p>
-            In my spare time, I enjoy playing and watching sports such as hockey, soccer, and golf. I'm also an avid gamer, average gym-goer, and a proficient
-            video editor/content creator (visual effects specialist).
-        </p>
-        <p>
-            When I'm not doing any of these things, I'm usually doing schoolwork or working on side projects for my GitHub portfolio.
-            I'm currently working on a Music Player mobile app, check out some of my projects below!
-        </p>
-    </section>
-
-    <!-- Projects Section-->
-    <section class="projects" , id="projects">
-        <h2 class="projects-title">
-            My Recent Projects
-        </h2>
-        <div class="projects-container">
-            <div class="project-container project-card">
-                <img src="images/Music-icon.png" alt="mp3-player" loading="lazy" class="project-pic" />
-                <h3 class="project-title">Music Player Mobile Application</h3>
-                <p class="project-details">
-                    A music player app for Android, being created in Android Studios using Java.
+    <!-- About Me -->
+    <main class="container">
+        <section id="about" class="about">
+            <div class="about-text">
+                <h1>About Me</h1>
+                
+                <p>
+                    Hey, thanks for visiting my page! I'm Nico Robson, a 22-year-old aspiring developer and fourth year Computer Science Co-op student at TMU (formerly Ryerson). 
+                    I have hands-on experience across diverse roles, including positions in software development, quality assurance, and cybersecurity.
                 </p>
-                <a href="https://github.com/nicorobson/Mobile-Application---Android-MP3-Player" target="_blank" class="project-link">Check it Out</a>
-            </div>
-            <div class="project-container project-card">
-                <img src="images/soccer2.png" alt="soccer-database" loading="lazy" class="project-pic" />
-                <h3 class="project-title">Pro Soccer Database - GUI</h3>
-                <p class="project-details">
-                    A simple GUI created with Python and Tkinter. This is connected to an Oracle database, and interacts with data that is managed 
-                    by SQL Developer.
+                <br>
+                <p>
+                    I worked with various programming languages and technologies, developed applications, automated processes, and contributed to cloud security and compliance measures. 
+                    As I approach graduation, I am motivated to find a full-time position in an area such as software development, quality engineering, data, cybersecurity, or AI/ML 
+                    where I can contribute meaningfully to innovative projects. 
                 </p>
-                <a href="https://github.com/nicorobson/Pro-Soccer-Database-GUI" target="_blank" class="project-link">Check it Out</a>
             </div>
-            <div class="project-container project-card">
-                <img src="images/school.jpg" alt="interactive-grade-calculator" loading="lazy" class="project-pic" />
-                <h3 class="project-title">School Grade Calculator</h3>
-                <p class="project-details">
-                    An interactive Python program that computes the user's academic grades.
-                    This is useful for me during exams because I can see what grade I need on my exam in order to achieve my desired course mark.
-                </p>
-                <a href="https://github.com/nicorobson/School-Grade-Calculator" target="_blank" class="project-link">Check it Out</a>
-            </div>
-            <div class="project-container project-card">
-                <img src="images/gui.png" alt="interactive-grade-calculator-gui" loading="lazy" class="project-pic" />
-                <h3 class="project-title">School Grade Calculator - GUI</h3>
-                <p class="project-details">
-                    An extension of my School Grade Calculator project - developing a working GUI to perform the grade calculations.
-                </p>
-                <a href="https://github.com/nicorobson/School-Grade-Calculator-GUI" target="_blank" class="project-link">Check it Out</a>
-            </div>
-        </div>
-    </section>
+            <div class="about-photo">
+                <img src="images/tmulogo.png" alt="tmu">
+                <img src="images/cslogo.png" alt="tmucs">
+                </div>
+        </section>
 
-    <!-- Skills section -->
-    <section class="skills" , id="skills">
-        <h2 class="skill-header"> My Top Skills</h2>
-        <div class="skills-wrapper">
-            <div class="first-set animate__animated animate__pulse">
-                <img src="images/icons8-java.svg" alt="" loading="lazy" class="icon icon-card" />
-                <img src="images/icons8-python.svg" alt="" loading="lazy" class="icon icon-card" />
-                <img src="images/powerautomate.png" alt="" loading="lazy" class="icon icon-card" />
-                <img src="images/power-apps-logo-800-600.png" alt="" loading="lazy" class="icon icon-card" />
-                <img src="images/sql.svg" alt="" loading="lazy" class="icon icon-card" />
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section-->
-    <section class="contact" id="contact">
-        <h2>Contact Me</h2>
-        <div class="contact-form-container">
-            <div class="contact-form">
-                <form action="mailto:nico.robson@torontomu.ca" method="POST">
-                    <div class="form-control">
-                        <label for="name">Name</label>
-                        <input type="text" id="name" name="sender-name" placeholder="Enter Your Name"
-                            class="input-field" required />
+        <!-- Experience -->
+        <section id="experience" class="experience">
+            <h1>Experience</h1>
+            
+            <div class="job">
+                <div class="job-header">
+                    <div>
+                        <h2>Assistant Developer</h2>
+                        <span>OPSEU Pension Trust | Sep 2023 - Aug 2024</span>
                     </div>
-                    <div class="form-control">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="sender-email" placeholder="Enter Your Email"
-                            class="input-field" required />
-                    </div>
-                    <div class="form-control">
-                        <label for="message">Message</label>
-                        <textarea id="message" cols="60" rows="10" placeholder="Enter Your Message" name="message"
-                            class="input-field" required></textarea>
-                    </div>
-                    <input type="submit" value="Submit" id="submit-btn" class="submit-btn" />
-                </form>
+                    <img src="images/optrust.png" alt="optrust">
+                </div>
+                <span class="toggle-btn" onclick="toggleDuties('duties1')">Details</span>
+                <ul id="duties1" class="job-duties">
+                    <li>- Used Oracle APEX with PL/SQL and JavaScript to develop a data-driven web application designed for end-users to
+                        retrieve the data of any pension plan member, and to view the statuses of various member info validations.</li>
+                    <li>- Used PowerAutomate with SQL to automate the extraction of financial data from a webpage, the aggregation of
+                        the data into Excel graphs, and the distribution of the data reports to various people in the accounting department.</li>
+                    <li>- Developed a Power Automate Cloud flow that analyzes the Microsoft Form submissions of a contract review, and
+                        automatically forwards the contract to the legal department for further inspection if needed.</li>
+                    <li>- Helped develop and test a Power Automate UI automation that emulates a sequence of manual processes done on
+                        an internal application for OPTrust’s pension and retirement administration system.</li>
+                    <li>- Conducted manual testing of the PENFAX pension software in multiple development environments prior to
+                        redeploying it in OPTrust’s pension administration system.</li>
+                    <li>- Created a PowerShell script to batch convert pension Word documents to PDF as a background process.</li>
+                </ul>
             </div>
-        </div>
-    </section>
 
-    <!-- Social accounts -->
-    <div class="socials">
-        <a href="https://www.linkedin.com/in/nicorobson/" target="_blank"><img
-                src="images/icons8-linkedin-circled.gif" alt="LinkedIn" loading="lazy" class="socicon" /></a>
-        <a href="https://github.com/nicorobson" target="_blank"><img src="images/icons8-github.gif"
-                alt="GitHub" loading="lazy" class="socicon" /></a>
-    </div>
+            <div class="job">
+                <div class="job-header">
+                    <div>
+                        <h2>Quality Assurance Automation Engineer</h2>
+                        <span>TD Bank | May 2023 - Aug 2023</span>
+                    </div>
+                    <img src="images/tdbank.png" alt="td">
+                </div>
+                <span class="toggle-btn" onclick="toggleDuties('duties2')">Details</span>
+                <ul id="duties2" class="job-duties">
+                    <li>- Created object-oriented Java programs to automate test case execution for the bank’s mainframe functionality.</li>
+                    <li>- Java test case automation was conducted in Eclipse using Selenium with Cucumber (BDD Framework).</li>
+                    <li>- Helped develop a PDF comparison tool (written in Java) that compares PDF files by image or text, and presented
+                        this tool to several teams, team leaders and product owners.</li>
+                    <li>- Designed a team’s onboarding submission form with ConfiForms and JSON, and configured it with Confluence.</li>
+                    <li>- Used private APIs with Postman platform to manage debit card statuses for testing purposes.</li>
+                </ul>
+            </div>
 
+            <div class="job">
+                <div class="job-header">
+                    <div>
+                        <h2>Cyber Security Intern (Cloud Security & Compliance)</h2>
+                        <span>TD Bank | May 2022 - Aug 2022</span>
+                    </div>
+                    <img src="images/tdbank.png" alt="td2">
+                </div>
+                <span class="toggle-btn" onclick="toggleDuties('duties3')">Details</span>
+                <ul id="duties3" class="job-duties">
+                    <li>- Ran Bash scripts implementing Sonrai Cloud Security policies to detect security incidents, tracking results in Splunk.</li>
+                    <li>- Used Jira and Outlook to monitor internal changes within the bank’s infrastructure, documenting them in Excel.</li>
+                    <li>- Produced the team’s weekly report, and created a backlog to prioritize the team’s tasks.</li>
+                </ul>
+            </div>
 
-    </div>
-    <!-- Footer section -->
+            <div class="job">
+                <div class="job-header">
+                    <div>
+                        <h2>Data Processing Technician</h2>
+                        <span>TekTrain Consultants (Startup) | Feb 2019 - Sep 2021</span>
+                    </div>
+                </div>
+                <span class="toggle-btn" onclick="toggleDuties('duties4')">Details</span>
+                <ul id="duties4" class="job-duties">
+                    <li>- Used internal software for file indexing, geocoding, and data entry using optical character recognition.</li>
+                    <li>- Daily work was transferred to SQL Server databases hosted on Microsoft Azure Cloud.</li>
+                    <li>- Presented best practices regarding project workflow and provided feedback on software performance.</li>
+                    <li>- Helped in the early software development stage by using ArcGIS software for geo-mapping of a golf course.</li>
+                </ul>
+            </div>
+        </section>
+        <!-- Skills -->
+        <section id="skills" class="skills-section">
+            <h2>My Top Skills</h2>
+            <div class="skills-container">
+              <!-- Back-End Skills -->
+              <div class="skill">
+                <h3>Back-End</h3>
+                <div>
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java">
+                  <p>Java</p>
+                </div>
+                <div>
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python">
+                  <p>Python</p>
+                </div>
+                <div>
+                  <img src="images/sql.svg" alt="SQL">
+                  <p>SQL</p>
+                </div>
+              </div>
+        
+              <!-- Front-End Skills -->
+              <div class="skill">
+                <h3>Front-End</h3>
+                <div>
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML">
+                  <p>HTML</p>
+                </div>
+                <div>
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS">
+                  <p>CSS</p>
+                </div>
+                <div>
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript">
+                  <p>JavaScript</p>
+                </div>
+              </div>
+        
+              <!-- Automation Skills -->
+              <div class="skill">
+                <h3>Automation</h3>
+                <div>
+                  <img src="images/pa.png" alt="Power Automate">
+                  <p>Power Automate</p>
+                </div>
+                <div>
+                  <img src="images/se.png" alt="Selenium">
+                  <p>Selenium</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Projects -->
+          <section id="projects" class="projects-section">
+            <h2>Projects</h2>
+            <div class="projects">
+                <div class="project">
+                    <img src="images/Music-icon.png" alt="Project 1">
+                    <h3 class="project-title">Music Player Mobile Application</h3>
+                    <p class="project-description">Android app that plays music from downloaded MP3 files and organizes them into a library of songs.</p>
+                    <a class="github-link" href="https://github.com/nicorobson/Mobile-Application---Android-MP3-Player" target="_blank">View on GitHub</a>
+                </div>
+                <div class="project">
+                    <img src="images/soccer2.png" alt="Project 2">
+                    <h3 class="project-title">Pro Soccer Database & GUI</h3>
+                    <p class="project-description">Python/Tkinter GUI connected to a database of soccer statistics, managed by Oracle SQL Developer.</p>
+                    <a class="github-link" href="https://github.com/nicorobson/Pro-Soccer-Database-GUI" target="_blank">View on GitHub</a>
+                </div>
+                <div class="project">
+                    <img src="images/school.jpg" alt="Project 3">
+                    <h3 class="project-title">Academic Grades Calculator</h3>
+                    <p class="project-description">An interactive Python program that computes the user's academic grades for any given course.</p>
+                    <a class="github-link" href="https://github.com/nicorobson/School-Grade-Calculator" target="_blank">View on GitHub</a>
+                </div>
+                <div class="project">
+                    <img src="images/gui.png" alt="Project 4">
+                    <h3 class="project-title">Grades Calculator 2.0 GUI Extension</h3>
+                    <p class="project-description">The second iteration of my Academic Grades Calculator project. This includes a user-friendly GUI. </p>
+                    <a class="github-link" href="https://github.com/nicorobson/School-Grade-Calculator-GUI" target="_blank">View on GitHub</a>
+                </div>
+            </div>
+        </section>
+    </main>
     <footer>
-        <p class="copy">&copy; Copyright 2024</p>
-        <p class="copy">
-            Built by
-            <a href="https://www.linkedin.com/in/nicorobson/" target="_blank">Nico Robson</a>
-        </p>
-    </footer>
-
-    <!-- Website Scripts -->
-    <script src="webscript.js"></script>
-
-    <!-- Ion icons scripts -->
-    <script
-      type="module"
-      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
-    ></script>
-    <script
-      nomodule
-      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
-    ></script>
-  </body>
+        <p>&copy; 2025 Nico Robson. All Rights Reserved.</p>
+      </footer>
+      <script>
+        $(document).ready(function(){
+            $('nav a').on('click', function(event) {
+                event.preventDefault();
+                var target = $(this).attr('href');
+                $('html, body').animate({
+                    scrollTop: $(target).offset().top - 20
+                }, 600);
+            });
+        });
+    </script>
+</body>
 </html>
